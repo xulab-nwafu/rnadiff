@@ -1,0 +1,34 @@
+#!/bin/bash
+
+usage () {
+	echo "Usage: $0 rnaseq.conf rnaseq.tsv control_tag case_tag"
+	echo " e.g.: $0 demo/rnaseq.conf demo/rnaseq.tsv wt mu"
+	exit 1
+}
+
+if [ $# != 4 ] ; then
+	usage
+fi
+
+if [ $1 == "-h" ] ; then
+	usage
+fi
+
+target_file=$1
+rnaseq_file=$2
+control_tag=$3
+case_tag=$4
+
+if [ ! -f $target_file ]; then
+	echo "Configuration file ($target_file) does not exist."
+	usage
+fi
+
+if [ ! -f $rnaseq_file ]; then
+	echo "RNAseq table file ($rnaseq_file) does not exist."
+	usage
+fi
+
+mkdir -p $PWD/edgeRun.dir
+nohup Rscript rnaseq.R $target_file $rnaseq_file $control_tag $case_tag > $PWD/rnadiff_log.txt &
+echo "Job submitted, outputs will be in $PWD/edgeRun.dir"

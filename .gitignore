@@ -1,0 +1,8 @@
+*.DStore
+.RData
+.Rhistory
+*.Rapp.history
+*.Rout
+rnadiff_log.txt
+edgeRun.dir/
+
