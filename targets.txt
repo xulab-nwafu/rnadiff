@@ -1,0 +1,5 @@
+Treatment	Label
+wt	wt_R1
+wt	wt_R2
+mu	mu_R1
+mu	mu_R2
