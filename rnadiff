@@ -30,5 +30,14 @@ if [ ! -f $rnaseq_file ]; then
 fi
 
 mkdir -p $PWD/edgeRun.dir
-nohup Rscript rnaseq.R $target_file $rnaseq_file $control_tag $case_tag > $PWD/rnadiff_log.txt &
+
+
+app=`which $0`
+if [[ -L $app ]]; then
+	lib_dir=`readlink -f $app`
+else
+	lib_dir=`dirname $app`
+fi
+
+nohup Rscript $lib_dir/rnaseq.R $target_file $rnaseq_file $control_tag $case_tag > $PWD/rnadiff_log.txt &
 echo "Job submitted, outputs will be in $PWD/edgeRun.dir"
