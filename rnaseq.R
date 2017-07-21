@@ -33,7 +33,7 @@ plotMDS(y, method = "bcv")
 dev.off()
 
 # DEG
-z <- UCexactTest(y, pair=c("wt", "mu"))
+z <- UCexactTest(y, pair=c(control_tag, case_tag))
 de <- decideTestsDGE(z, adjust.method = "BH", p.value = 0.05, lfc = 1)
 summary(de)
 
