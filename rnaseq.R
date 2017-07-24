@@ -5,7 +5,7 @@ rnaseq_file <- args[2]
 control_tag <- args[3]
 case_tag    <- args[4]
 
-# target_file <- "demo/targets.txt"
+# target_file <- "demo/rnaseq.conf"
 # rnaseq_file <- "demo/rnaseq.tsv"
 # control_tag <- "wt"
 # case_tag    <- "mu"
@@ -15,6 +15,19 @@ library(edgeRun)
 # load data
 targets <- readTargets(file = target_file)
 x<-read.delim(file = rnaseq_file, row.names=1, stringsAsFactors=FALSE, as.is = TRUE, sep = "\t")
+
+# Check data
+if  (!all(targets$Label == colnames(x)))
+  stop("RNA-seq configuration file is not consistent with the data file",
+       "\nRNA-seq conf label :\n", paste(targets$Label, "\t"),
+       "\nRNA-seq data header:\n", paste(colnames(x), "\t")
+       )
+cmp_tags <- c(control_tag, case_tag)
+if (!all(cmp_tags %in% unique(targets$Treatment)))
+  stop("At least one tag for comparation is not defined in ", target_file, ":\n",
+       "All defined tags are:\n", paste(unique(targets$Treatment), "\t"),
+       "\nInput tags are:\n", paste(cmp_tags, "\t")
+       )
 
 # Preprocess
 y <- DGEList(counts=x, group=targets$Treatment)
