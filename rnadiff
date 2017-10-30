@@ -29,8 +29,9 @@ if [ ! -f $rnaseq_file ]; then
 	usage
 fi
 
-mkdir -p $PWD/edgeRun.dir
 
+out_dir="$PWD/$3_$4.rnadiff.outdir"
+mkdir -p $out_dir
 
 app=`which $0`
 if [[ -L $app ]]; then
@@ -38,5 +39,5 @@ if [[ -L $app ]]; then
 fi
 lib_dir=`dirname $app`
 
-nohup Rscript $lib_dir/rnaseq.R $target_file $rnaseq_file $control_tag $case_tag 1>$PWD/rnadiff_log.txt 2>&1 &
-echo "Job submitted, outputs will be in $PWD/edgeRun.dir"
+nohup Rscript $lib_dir/rnaseq.R $target_file $rnaseq_file $control_tag $case_tag $out_dir 1>$PWD/$3_$4.rnadiff_log.txt 2>&1 &
+echo "Job submitted, outputs will be in $out_dir"

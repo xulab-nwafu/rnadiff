@@ -3,6 +3,6 @@
 .Rhistory
 *.Rapp.history
 *.Rout
-rnadiff_log.txt
-edgeRun.dir/
+*.rnadiff_log.txt
+*.outdir/
 

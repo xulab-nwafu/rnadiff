@@ -6,8 +6,8 @@ These scripts are part of `hits` pipeline for RNAseq, but also work independentl
 rnadiff
 ---------------
 ```
-Usage: ./rnadiff rnaseq.conf rnaseq.tsv control_tag case_tag
- e.g.: ./rnadiff demo/rnaseq.conf demo/rnaseq.tsv wt mu
+Usage: rnadiff rnaseq.conf rnaseq.tsv control_tag case_tag
+ e.g.: rnadiff demo/rnaseq.conf demo/rnaseq.tsv wt mu
 ```
 
 Author
