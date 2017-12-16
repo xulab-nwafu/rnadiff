@@ -39,5 +39,5 @@ if [[ -L $app ]]; then
 fi
 lib_dir=`dirname $app`
 
-nohup Rscript $lib_dir/rnaseq.R $target_file $rnaseq_file $control_tag $case_tag $out_dir 1>$PWD/$3_$4.rnadiff_log.txt 2>&1 &
+Rscript $lib_dir/rnaseq.R $target_file $rnaseq_file $control_tag $case_tag $out_dir 1>$PWD/$3_$4.rnadiff_log.txt 2>&1
 echo "Job submitted, outputs will be in $out_dir"
